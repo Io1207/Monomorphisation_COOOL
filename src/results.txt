@@ -1,0 +1,64 @@
+Soot started on Sat Apr 11 13:00:43 IST 2026
+[DUMP] Jimple written to ./output/Test1/before
+
+[METRICS BEFORE]
+label=BEFORE
+methodCount=11
+totalStmts=77
+virtualCallSites=10
+directCallSites=13
+inlineOpportunities=13
+
+Soot finished on Sat Apr 11 13:00:44 IST 2026
+Soot has run for 0 min. 0 sec.
+Soot started on Sat Apr 11 13:00:44 IST 2026
+[MONO]   main @ line 52  →  foo
+[INLINE] Inlined foo into main @ line 52
+[MONO]   main @ line 53  →  blah
+[INLINE] Inlined blah into main @ line 53
+[MONO]   main @ line 62  →  foo
+[INLINE] Inlined foo into main @ line 62
+[MONO]   foo @ line 8  →  bar
+[INLINE] Inlined bar into foo @ line 8
+
+=== Monomorphization: 4 sites ===
+=== Inlining:         4 sites ===
+
+O38 = Y[]
+O46 = Y[]
+O47 = Y[]
+O48 = Y[]
+O49 = Y[]
+O57 = N
+O58 = Y[61]
+O59 = Y[]
+[DUMP] Jimple written to ./output/Test1/after
+
+[METRICS AFTER]
+label=AFTER
+methodCount=11
+totalStmts=95
+virtualCallSites=10
+directCallSites=13
+inlineOpportunities=13
+
+Soot finished on Sat Apr 11 13:00:44 IST 2026
+Soot has run for 0 min. 0 sec.
+
+╔══════════════════════════════════════════════════════════╗
+║           TRANSFORMATION IMPROVEMENT SUMMARY             ║
+╠══════════════════╦═════════╦═════════╦══════════════════╣
+║ Metric           ║  BEFORE ║   AFTER ║           Change ║
+╠══════════════════╬═════════╬═════════╬══════════════════╣
+║ methodCount      ║      11 ║      11 ║      +0    +0.0% ║
+║ totalStmts       ║      77 ║      95 ║     +18   +23.4% ║
+║ virtualCallSites ║      10 ║      10 ║      +0    +0.0% ║
+║ directCallSites  ║      13 ║      13 ║      +0    +0.0% ║
+║ inlineOpportunities ║      13 ║      13 ║      +0    +0.0% ║
+╚══════════════════╩═════════╩═════════╩══════════════════╝
+
+INTERPRETATION:
+  • 0 virtual call(s) monomorphized (virtual dispatch eliminated)
+  • 0 direct call(s) inlined (call frame eliminated)
+  • Jimple diffs: compare before/ and after/ directories
+    e.g.:  diff -u output/<testcase>/before/Test.jimple output/<testcase>/after/Test.jimple
