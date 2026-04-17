@@ -12,8 +12,8 @@ clean: *.class Testcases/Test1/*.class
 	make cleanSrc
 	make cleanTest
 
-cleanSrc: *.class
+cleanSrc:
 	rm *.class
 
-cleanTest: Testcases/Test1/*.class
+cleanTest:
 	cd Testcases/Test1 && rm *.class && cd ../../
