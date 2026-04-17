@@ -10,7 +10,7 @@ public class PA4 {
 
     public static void main(String[] args) throws Exception {
         String classPath = "./testcases/" + args[0];
-        String outDir    = "./output/" + args[0];
+        String outDir = "./output/" + args[0];
 
         Files.createDirectories(Paths.get(outDir + "/before"));
         Files.createDirectories(Paths.get(outDir + "/after"));
