@@ -11,7 +11,7 @@ import java.util.*;
 public class MonoInlineTransformer extends SceneTransformer {
 
     private static final int INLINE_THRESHOLD = 30;
-    private static final int MAX_PASSES       = 8;
+    private static final int MAX_PASSES = 8;
     private static final int MAX_INLINE_DEPTH = 3;
 
     private final Map<String, PTGraph> methodSummaries = new HashMap<>();
@@ -22,10 +22,6 @@ public class MonoInlineTransformer extends SceneTransformer {
     private final Map<String, Integer> thisRefSiteIds = new HashMap<>();
 
     private final Set<String> currentlyInlining = new HashSet<>();
-
-    // =========================================================================
-    // Entry point
-    // =========================================================================
 
     @Override
     protected void internalTransform(String phaseName, Map<String, String> options) {
@@ -69,9 +65,7 @@ public class MonoInlineTransformer extends SceneTransformer {
         System.out.printf("=== Total inlined       : %d ===%n%n", totalInline);
     }
 
-    // =========================================================================
-    // INTRAPROCEDURAL PT GRAPH — forward dataflow, no callee descent
-    // =========================================================================
+    // intraproc
 
     PTGraph buildPTGraph(SootMethod method) {
         if (!method.isConcrete()) return new PTGraph();
@@ -353,9 +347,7 @@ public class MonoInlineTransformer extends SceneTransformer {
         return out;
     }
 
-    // =========================================================================
-    // Helper: merge callee heap edges into caller PT graph
-    // =========================================================================
+    // merge callee heap edges into caller PT graph
 
     private void mergeHeap(PTGraph src, PTGraph dst) {
         for (Map.Entry<Integer, Map<SootField, Set<Integer>>> h : src.heap.entrySet()) {
