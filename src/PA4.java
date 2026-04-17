@@ -35,8 +35,8 @@ public class PA4 {
         configureSoot(classPath);
         PackManager.v().getPack("wjtp").add(
             new Transform("wjtp.mono", new MonoInlineTransformer()));
-        PackManager.v().getPack("wjtp").add(
-            new Transform("wjtp.dfa",  new AnalysisTransformer()));
+        // PackManager.v().getPack("wjtp").add(
+        //     new Transform("wjtp.dfa",  new AnalysisTransformer()));
         PackManager.v().getPack("wjtp").add(
             new Transform("wjtp.snapshot_after", new SceneTransformer() {
                 @Override
