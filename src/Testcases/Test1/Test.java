@@ -40,37 +40,53 @@ class P extends O {
 
 public class Test {
   static M xxx;
-  public void main(String[] args) {
-    { // Case 1
-      M o1 = new M(); // O31
-      o1.x = 8;
-      // xxx.x = o1.x;
-      // xxx = o1;
-      System.out.println(o1.x);
+
+  static void runOnce() {
+        { // Case 1
+          M o1 = new M(); // O31
+          o1.x = 8;
+          // xxx.x = o1.x;
+          // xxx = o1;
+          System.out.println(o1.x);
+        }
+
+        { // Case 2
+          M o2 = new M(); // O37
+          N o3 = new N(); // O38
+          M o6 = new M();
+          M o7 = new M();
+          o2.x = 27;
+          o2.y = 125;
+          o3.foo(o2);
+          o3.blah(o2, o6, o7);
+        }
+
+        { // Case 3
+          M o4 = new N(); // O45
+          O o5 = new O(); // O46
+          O o6 = new P(); // O47
+          o4.x = 343;
+          o5.foo(o4);
+          // o6.foo(13);
+        }
+
+        return;
     }
 
-    { // Case 2
-      M o2 = new M(); // O37
-      N o3 = new N(); // O38
-      M o6 = new M();
-      M o7 = new M();
-      o2.x = 27;
-      o2.y = 125;
-      o3.foo(o2);
-      o3.blah(o2, o6, o7);
-    }
+    public static void main(String[] args) {
+        int iterations = 50000;
 
-    { // Case 3
-      M o4 = new N(); // O45
-      O o5 = new O(); // O46
-      O o6 = new P(); // O47
-      o4.x = 343;
-      o5.foo(o4);
-      // o6.foo(13);
-    }
+        long start = System.nanoTime();
 
-    return;
-  }
+        int acc = 0;
+        for (int iter = 0; iter < iterations; iter++) {
+          runOnce();
+        }
+
+        long end = System.nanoTime();
+        System.out.println("Result : " + acc);
+        System.out.printf("Time   : %.3f ms%n", (end - start) / 1_000_000.0);
+    }
 }
 
 ///////////////   2
