@@ -106,7 +106,7 @@ public class Test {
         return s1.output() + s2.output() + s3.output();
     }
 
-    public static void main(String[] args) {
+    static int runOnce() {
         int[] seq1 = {1, 2, 3, -1, 0, 5, -2, 0};
         int[] seq2 = {10, 5, 3,  0, 7,  0, -1, 0};
         int[] seq3 = new int[50];
@@ -118,5 +118,21 @@ public class Test {
         acc += runSequence(seq3);
         for (int i = 0; i < 100; i++) acc += directTransitions(i);
         System.out.println(acc);
+        return acc;
+    }
+
+    public static void main(String[] args) {
+        int iterations = 50000;
+
+        long start = System.nanoTime();
+
+        int acc = 0;
+        for (int iter = 0; iter < iterations; iter++) {
+            acc += runOnce();
+        }
+
+        long end = System.nanoTime();
+        System.out.println("Result : " + acc);
+        System.out.printf("Time   : %.3f ms%n", (end - start) / 1_000_000.0);
     }
 }

@@ -99,12 +99,25 @@ public class Test {
         return sp.process(x) + bp.process(x) + bg.process(x);
     }
 
-    public static void main(String[] args) {
+    static int runOnce() {
         int acc = 0;
         for (int i = 0; i < 500; i++) {
             acc += step4(i);
             acc += polymorphicUsage(i);
         }
         System.out.println(acc);
+        return acc;
+    }
+
+    public static void main(String[] args) {
+        int iterations = 50000;
+        long start = System.nanoTime();
+        int acc = 0;
+        for (int iter = 0; iter < iterations; iter++) {
+            acc += runOnce();
+        }
+        long end = System.nanoTime();
+        System.out.println("Result : " + acc);
+        System.out.printf("Time   : %.3f ms%n", (end - start) / 1_000_000.0);
     }
 }

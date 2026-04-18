@@ -46,9 +46,11 @@ class Wine extends Bottles {
 public class Test {
     static int runOnce() {
         Bottles b  = new Bottles();
+        Bottles b1 = new Water();
         Bottles w  = b.ret_water();
         Bottles b2 = w.ret_bot();
         Bottles b3 = b2.ret_bot();
+        b1.dummy();
         b.dummy();
         w.dummy();
         b2.dummy();

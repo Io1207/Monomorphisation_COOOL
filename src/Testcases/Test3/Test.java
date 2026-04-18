@@ -103,7 +103,7 @@ public class Test {
 
     // Builds a decorator stack with statically-known types at each layer
     static int decoratedMeasure(int param) {
-        Cube         c  = new Cube(param);
+        Cube c  = new Cube(param);
         ScaledShape  sc = new ScaledShape(c, 3);
         ClampedShape cl = new ClampedShape(sc, 1000);
         return cl.measure();
