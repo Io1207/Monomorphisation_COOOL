@@ -1,0 +1,8 @@
+AI Use Declaration
+
+Gen AI has been used for the following code snippets
+1. Logging of results: making the table and the idea of making multiple runs within the case 
+                       itself and then using the output-ed time from the file to calculate average
+                       and reporting speed up using tables came from gen AI
+
+2. Debugging and Soot Functionality
