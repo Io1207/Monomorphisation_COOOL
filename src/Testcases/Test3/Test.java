@@ -208,7 +208,7 @@ public class Test {
     // main
     // ═══════════════════════════════════════════════════════════════════════
 
-    public static void main(String[] args) {
+    static void runOnce() {
         int acc = 0;
         for (int i = 1; i <= 100; i++) {
             // Part A
@@ -230,5 +230,20 @@ public class Test {
             acc += counterStress(i);
         }
         System.out.println(acc);
+    }
+
+    public static void main(String[] args) {
+        int iterations = 50000;
+
+        long start = System.nanoTime();
+
+        int acc = 0;
+        for (int iter = 0; iter < iterations; iter++) {
+          runOnce();
+        }
+
+        long end = System.nanoTime();
+        System.out.println("Result : " + acc);
+        System.out.printf("Time   : %.3f ms%n", (end - start) / 1_000_000.0);
     }
 }

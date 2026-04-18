@@ -14,26 +14,21 @@ public class MonoInlineTransformer extends SceneTransformer {
     private static final int INLINE_THRESHOLD = 30;
     private static final int MAX_PASSES = 10;
     private static final int MAX_INLINE_DEPTH = 5;
-
     private final Map<String, PTGraph> methodSummaries = new HashMap<>();
-
     private int allocCounter = 0;
     private final Map<NewExpr, Integer> allocSiteIds  = new IdentityHashMap<>();
     private final Map<Integer, SootClass> allocSiteTypes = new HashMap<>();
     private final Map<String, Integer> thisRefSiteIds = new HashMap<>();
-
     private final Set<String> currentlyInlining = new HashSet<>();
 
     @Override
     protected void internalTransform(String phaseName, Map<String, String> options) {
+        int totalMono = 0, totalInline = 0;
         CallGraph cg = Scene.v().getCallGraph();
 
         List<SootMethod> appMethods = new ArrayList<>();
         for (SootClass sc : Scene.v().getApplicationClasses())
             appMethods.addAll(sc.getMethods());
-
-        int totalMono = 0, totalInline = 0;
-
         for (SootMethod method : appMethods) {
             if (!method.isConcrete()) continue;
 
@@ -63,7 +58,9 @@ public class MonoInlineTransformer extends SceneTransformer {
                     for (SootClass sc : Scene.v().getApplicationClasses())
                         for (SootMethod m : sc.getMethods())
                             if (m.isConcrete())
-                                try { m.retrieveActiveBody().validate(); }
+                                try { 
+                                    m.retrieveActiveBody().validate(); 
+                                }
                                 catch (Exception ignored) {}
 
                     methodSummaries.clear();
@@ -75,51 +72,6 @@ public class MonoInlineTransformer extends SceneTransformer {
         System.out.printf("%n=== Total monomorphized : %d ===%n", totalMono);
         System.out.printf("=== Total inlined: %d ===%n%n", totalInline);
     }
-
-    // PTGraph buildPTGraph(SootMethod method) {
-    //     if (!method.isConcrete()) return new PTGraph();
-
-    //     Body body = method.retrieveActiveBody();
-    //     UnitGraph cfg = new BriefUnitGraph(body);
-    //     List<Unit> units = new ArrayList<>(body.getUnits());
-
-    //     Map<Unit, PTGraph> in = new HashMap<>();
-    //     for (Unit u : units) in.put(u, new PTGraph());
-
-    //     LinkedHashSet<Unit> worklist = new LinkedHashSet<>(units);
-
-    //     while (!worklist.isEmpty()) {
-    //         Unit u = worklist.iterator().next();
-    //         worklist.remove(u);
-
-    //         PTGraph inState = new PTGraph();
-    //         for (Unit pred : cfg.getPredsOf(u)) {
-    //             PTGraph predIn = in.get(pred);
-    //             if (predIn == null) continue;
-    //             PTGraph predOut = new PTGraph();
-    //             predOut.copy(predIn);
-    //             // depth=0 means intraprocedural rules not callee drop
-    //             applyTransferInter((Stmt) pred, predOut, method.getSignature(), 0);
-    //             inState.union(predOut);
-    //         }
-
-    //         if (!inState.equals(in.get(u))) {
-    //             in.put(u, inState);
-    //             worklist.addAll(cfg.getSuccsOf(u));
-    //         }
-    //     }
-
-    //     PTGraph result = new PTGraph();
-    //     for (Unit u : units) {
-    //         PTGraph inState = in.get(u);
-    //         if (inState == null) continue;
-    //         PTGraph out = new PTGraph();
-    //         out.copy(inState);
-    //         applyTransferInter((Stmt) u, out, method.getSignature(), 0);
-    //         result.union(out);
-    //     }
-    //     return result;
-    // }
 
     private PTGraph buildPTGraphInter(SootMethod method, int depth) {
         String sig = method.getSignature();
@@ -181,11 +133,6 @@ public class MonoInlineTransformer extends SceneTransformer {
         return result;
     }
 
-    /* 
-        Intraprocedural rules addressed in applytransferinter are-  x = new f(), x = y , x = (T)y , x = y.f, y.f = x, x = y[i]
-        references involving parameters [don't know caller context] and arrays (as in array[i]=y) have not been taken care of
-     */ 
-
     private void applyTransferInter(Stmt stmt, PTGraph pt,
                                     String callerSig, int depth) {
         if (stmt instanceof AssignStmt) {
@@ -204,17 +151,20 @@ public class MonoInlineTransformer extends SceneTransformer {
 
             // x = y
             if (lhs instanceof Local && rhs instanceof Local) {
-                for (int o : pt.stack.getOrDefault((Local) rhs, Collections.emptySet()))
+                for (int o : pt.stack.getOrDefault((Local) rhs, Collections.emptySet())) {
                     pt.addStackPtr((Local) lhs, o);
+                }
                 return;
             }
 
             // x = (T) y
             if (lhs instanceof Local && rhs instanceof CastExpr) {
                 Value op = ((CastExpr) rhs).getOp();
-                if (op instanceof Local)
-                    for (int o : pt.stack.getOrDefault((Local) op, Collections.emptySet()))
+                if (op instanceof Local) {
+                    for (int o : pt.stack.getOrDefault((Local) op, Collections.emptySet())){
                         pt.addStackPtr((Local) lhs, o);
+                    }
+                }
                 return;
             }
 
@@ -226,8 +176,9 @@ public class MonoInlineTransformer extends SceneTransformer {
                     SootField fld = fr.getField();
                     for (int o : pt.stack.getOrDefault(base, Collections.emptySet())) {
                         Map<SootField, Set<Integer>> fMap = pt.heap.getOrDefault(o, Collections.emptyMap());
-                        for (int t : fMap.getOrDefault(fld, Collections.emptySet()))
+                        for (int t : fMap.getOrDefault(fld, Collections.emptySet())) {
                             pt.addStackPtr((Local) lhs, t);
+                        }
                     }
                 }
                 return;
@@ -240,9 +191,11 @@ public class MonoInlineTransformer extends SceneTransformer {
                     Local     base = (Local) fr.getBase();
                     Local     src  = (Local) rhs;
                     SootField fld  = fr.getField();
-                    for (int o : pt.stack.getOrDefault(base, Collections.emptySet()))
-                        for (int t : pt.stack.getOrDefault(src, Collections.emptySet()))
+                    for (int o : pt.stack.getOrDefault(base, Collections.emptySet())) {
+                        for (int t : pt.stack.getOrDefault(src, Collections.emptySet())) {
                             pt.addHeapPtr(o, fld, t);
+                        }
+                    }
                 }
                 return;
             }
@@ -254,9 +207,11 @@ public class MonoInlineTransformer extends SceneTransformer {
                     Local base = (Local) ar.getBase();
                     for (int o : pt.stack.getOrDefault(base, Collections.emptySet())) {
                         Map<SootField, Set<Integer>> fMap = pt.heap.getOrDefault(o, Collections.emptyMap());
-                        for (Set<Integer> targets : fMap.values())
-                            for (int t : targets)
+                        for (Set<Integer> targets : fMap.values()) {
+                            for (int t : targets) {
                                 pt.addStackPtr((Local) lhs, t);
+                            }
+                        }
                     }
                 }
                 return;
@@ -327,7 +282,6 @@ public class MonoInlineTransformer extends SceneTransformer {
     }
 
     // merge callee heap edges into caller PT graph
-
     private void mergeHeap(PTGraph src, PTGraph dst) {
         for (Map.Entry<Integer, Map<SootField, Set<Integer>>> h : src.heap.entrySet()) {
             if (h.getValue() == null) continue;
@@ -356,8 +310,9 @@ public class MonoInlineTransformer extends SceneTransformer {
                 SootClass sc = allocSiteTypes.get(siteId);
                 if (sc == null) continue;
                 // Check assignment compatibility via Soot's hierarchy
-                if (isAssignableTo(sc, lhsType))
+                if (isAssignableTo(sc, lhsType)) {
                     pt.addStackPtr(lhs, siteId);
+                }
             }
         }
     }
@@ -368,8 +323,9 @@ public class MonoInlineTransformer extends SceneTransformer {
         SootClass cur = sc;
         while (cur != null) {
             if (cur.equals(target)) return true;
-            for (SootClass iface : cur.getInterfaces())
+            for (SootClass iface : cur.getInterfaces()) {
                 if (iface.equals(target)) return true;
+            }
             if (!cur.hasSuperclass()) break;
             cur = cur.getSuperclass();
         }
@@ -413,9 +369,7 @@ public class MonoInlineTransformer extends SceneTransformer {
             replaceInvokeInStmt(stmt, mono);
             count++;
 
-            System.out.printf("[MONO-PT]  %s @ line %d  pts={%s}  ->  %s%n",
-                    method.getName(), stmt.getJavaSourceStartLineNumber(),
-                    concreteTypesStr(pts), resolved.getName());
+            System.out.printf("[MONO-PT]  %s @ line %d  pts={%s}  ->  %s%n", method.getName(), stmt.getJavaSourceStartLineNumber(), concreteTypesStr(pts), resolved.getName());
         }
         return count;
     }
@@ -432,8 +386,7 @@ public class MonoInlineTransformer extends SceneTransformer {
             if (!stmt.containsInvokeExpr()) continue;
 
             InvokeExpr ie = stmt.getInvokeExpr();
-            if (!(ie instanceof VirtualInvokeExpr) && !(ie instanceof InterfaceInvokeExpr))
-                continue;
+            if (!(ie instanceof VirtualInvokeExpr) && !(ie instanceof InterfaceInvokeExpr)) continue;
 
             Value base = ((InstanceInvokeExpr) ie).getBase();
             if (!(base instanceof Local)) continue;
@@ -444,14 +397,11 @@ public class MonoInlineTransformer extends SceneTransformer {
             SootMethod target = targets.get(0);
             if (!target.isConcrete() || target.isAbstract()) continue;
 
-            SpecialInvokeExpr mono = Jimple.v().newSpecialInvokeExpr(
-                    (Local) base, target.makeRef(), ie.getArgs());
+            SpecialInvokeExpr mono = Jimple.v().newSpecialInvokeExpr((Local) base, target.makeRef(), ie.getArgs());
             replaceInvokeInStmt(stmt, mono);
             count++;
 
-            System.out.printf("[MONO-FWD]  %s @ line %d  ->  %s%n",
-                    method.getName(), stmt.getJavaSourceStartLineNumber(),
-                    target.getName());
+            System.out.printf("[MONO-FWD]  %s @ line %d  ->  %s%n", method.getName(), stmt.getJavaSourceStartLineNumber(), target.getName());
         }
         return count;
     }
@@ -470,8 +420,7 @@ public class MonoInlineTransformer extends SceneTransformer {
             if (!stmt.containsInvokeExpr()) continue;
 
             InvokeExpr ie = stmt.getInvokeExpr();
-            if (!(ie instanceof SpecialInvokeExpr) && !(ie instanceof StaticInvokeExpr))
-                continue;
+            if (!(ie instanceof SpecialInvokeExpr) && !(ie instanceof StaticInvokeExpr)) continue;
 
             if (ie instanceof InstanceInvokeExpr) {
                 Value base = ((InstanceInvokeExpr) ie).getBase();
@@ -482,8 +431,7 @@ public class MonoInlineTransformer extends SceneTransformer {
             if (!target.isConcrete()) continue;
 
             if (target.getName().equals("<init>")) {
-                System.out.printf("[INLINE] Skipped (constructor): %s%n",
-                        target.getDeclaringClass().getShortName());
+                System.out.printf("[INLINE] Skipped (constructor): %s%n", target.getDeclaringClass().getShortName());
                 continue;
             }
             
@@ -495,8 +443,12 @@ public class MonoInlineTransformer extends SceneTransformer {
             }
 
             int sz;
-            try { sz = target.retrieveActiveBody().getUnits().size(); }
-            catch (Exception e) { continue; }
+            try { 
+                sz = target.retrieveActiveBody().getUnits().size(); 
+            }
+            catch (Exception e) { 
+                continue; 
+            }
 
             if (sz > INLINE_THRESHOLD) {
                 System.out.printf("[INLINE] Skipped (size=%d): %s%n", sz, target.getName());
@@ -505,9 +457,7 @@ public class MonoInlineTransformer extends SceneTransformer {
 
             if (tryInline(body, stmt, target)) {
                 count++;
-                System.out.printf("[INLINE]  %s  ->  %s @ line %d%n",
-                        target.getName(), method.getName(),
-                        stmt.getJavaSourceStartLineNumber());
+                System.out.printf("[INLINE]  %s  ->  %s @ line %d%n", target.getName(), method.getName(), stmt.getJavaSourceStartLineNumber());
             }
         }
         return count;
@@ -518,8 +468,12 @@ public class MonoInlineTransformer extends SceneTransformer {
         currentlyInlining.add(target.getSignature());
         try {
             Body calleeBody;
-            try { calleeBody = target.retrieveActiveBody(); }
-            catch (Exception e) { return false; }
+            try { 
+                calleeBody = target.retrieveActiveBody(); 
+            }
+            catch (Exception e) { 
+                return false; 
+            }
 
             InvokeExpr ie = callStmt.getInvokeExpr();
             Chain<Unit> callerUnits = callerBody.getUnits();
@@ -540,8 +494,9 @@ public class MonoInlineTransformer extends SceneTransformer {
 
             Map<Integer, Value> paramMap = new HashMap<>();
             List<Value> args = ie.getArgs();
-            for (int i = 0; i < args.size(); i++)
+            for (int i = 0; i < args.size(); i++) {
                 paramMap.put(i, args.get(i));
+            }
 
             Value baseValue = null;
             if (ie instanceof InstanceInvokeExpr) {
@@ -563,16 +518,19 @@ public class MonoInlineTransformer extends SceneTransformer {
                     Value rhs = id.getRightOp();
                     if (!(lhs instanceof Local)) { unitMap.put(u, Jimple.v().newNopStmt()); continue; }
                     Local mappedLhs = localMap.get((Local) lhs);
-                    if (mappedLhs == null) { unitMap.put(u, Jimple.v().newNopStmt()); continue; }
+                    if (mappedLhs == null) { 
+                        unitMap.put(u, Jimple.v().newNopStmt()); 
+                        continue; 
+                    }
                     Stmt replacement;
-                    if (rhs instanceof ThisRef && baseValue != null)
+                    if (rhs instanceof ThisRef && baseValue != null) {
                         replacement = Jimple.v().newAssignStmt(mappedLhs, baseValue);
+                    }
                     else if (rhs instanceof ParameterRef) {
                         Value actual = paramMap.get(((ParameterRef) rhs).getIndex());
-                        replacement = actual != null
-                            ? Jimple.v().newAssignStmt(mappedLhs, actual)
-                            : Jimple.v().newNopStmt();
-                    } else {
+                        replacement = actual != null ? Jimple.v().newAssignStmt(mappedLhs, actual) : Jimple.v().newNopStmt();
+                    } 
+                    else {
                         replacement = Jimple.v().newNopStmt();
                     }
                     unitMap.put(u, replacement);
@@ -616,7 +574,9 @@ public class MonoInlineTransformer extends SceneTransformer {
             callerUnits.remove(callStmt);
 
             // ── NEW: re-validate so downstream body packs see a clean graph ───
-            try { callerBody.validate(); }
+            try { 
+                callerBody.validate(); 
+            }
             catch (Exception ignored) {}
 
             return true;
@@ -629,7 +589,9 @@ public class MonoInlineTransformer extends SceneTransformer {
     private List<SootMethod> cgTargets(CallGraph cg, Stmt stmt) {
         List<SootMethod> out = new ArrayList<>();
         Iterator<Edge> it = cg.edgesOutOf(stmt);
-        while (it.hasNext()) out.add(it.next().tgt());
+        while (it.hasNext()) {
+            out.add(it.next().tgt());
+        }
         return out;
     }
 
@@ -656,7 +618,10 @@ public class MonoInlineTransformer extends SceneTransformer {
         for (ValueBox vb : boxes) {
             Value remapped = remapValue(vb.getValue(), localMap);
             if (remapped != vb.getValue()) {
-                try { vb.setValue(remapped); } catch (RuntimeException ignored) {}
+                try { 
+                    vb.setValue(remapped); 
+                } 
+                catch (RuntimeException ignored) {}
             }
         }
     }
@@ -673,7 +638,10 @@ public class MonoInlineTransformer extends SceneTransformer {
             Value sub = vb.getValue();
             Value remapped = remapValue(sub, localMap);
             if (remapped != sub) {
-                try { vb.setValue(remapped); } catch (RuntimeException ignored) {}
+                try { 
+                    vb.setValue(remapped); 
+                } 
+                catch (RuntimeException ignored) {}
             }
         }
         return v;
