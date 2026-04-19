@@ -1,0 +1,691 @@
+Soot started on Sat Apr 18 23:53:01 IST 2026
+[DUMP] Jimple written to ./output/Test11/before
+
+[METRICS BEFORE]
+label=BEFORE
+methodCount=20
+totalStmts=121
+virtualCallSites=12
+directCallSites=22
+inlineOpportunities=20
+
+Soot finished on Sat Apr 18 23:53:02 IST 2026
+Soot has run for 0 min. 0 sec.
+Soot started on Sat Apr 18 23:53:02 IST 2026
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 5
+[INLINE] Skipped (constructor): Test$B
+[PASS 1][<init>]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized compute at depth 5
+[PASS 1][compute]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized shared at depth 5
+[PASS 1][shared]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 5
+[INLINE] Skipped (constructor): Test$A
+[PASS 1][<init>]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized shared at depth 5
+[PASS 1][shared]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 5
+[INLINE] Skipped (constructor): Object
+[PASS 1][<init>]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized useA at depth 5
+[PASS 1][useA]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized chainC at depth 5
+[MONO-FWD]  chainC @ line 39  ->  shared
+[INLINE] Skipped (constructor): Test$C
+[INLINE]  shared  ->  chainC @ line 39
+[MONO-PT]  chainC @ line 38  pts={Test$C@5}  ->  compute
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized chainC at depth 5
+[PASS 1][chainC]  fwd-mono=1  inline=1  pt-mono=1
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized chainC at depth 5
+[INLINE] Skipped (constructor): Test$C
+[INLINE]  compute  ->  chainC @ line 38
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized chainC at depth 5
+[PASS 2][chainC]  fwd-mono=0  inline=1  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized chainC at depth 5
+[INLINE] Skipped (constructor): Test$C
+[PASS 3][chainC]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized chainD at depth 5
+[MONO-FWD]  chainD @ line 45  ->  compute
+[MONO-FWD]  chainD @ line 46  ->  shared
+[INLINE] Skipped (constructor): Test$D
+[INLINE]  compute  ->  chainD @ line 45
+[INLINE]  shared  ->  chainD @ line 46
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized chainD at depth 5
+[PASS 1][chainD]  fwd-mono=2  inline=2  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized chainD at depth 5
+[INLINE] Skipped (constructor): Test$D
+[PASS 2][chainD]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized chainE at depth 5
+[MONO-FWD]  chainE @ line 52  ->  compute
+[MONO-FWD]  chainE @ line 52  ->  shared
+[MONO-FWD]  chainE @ line 52  ->  compute
+[INLINE] Skipped (constructor): Test$E
+[INLINE]  compute  ->  chainE @ line 52
+[INLINE]  shared  ->  chainE @ line 52
+[INLINE]  compute  ->  chainE @ line 52
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized chainE at depth 5
+[PASS 1][chainE]  fwd-mono=3  inline=3  pt-mono=0
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized chainE at depth 5
+[INLINE] Skipped (constructor): Test$E
+[PASS 2][chainE]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized useA at depth 4
+[PT-INTER] Summarized callViaAbstractC at depth 5
+[INLINE] Skipped (constructor): Test$C
+[INLINE]  useA  ->  callViaAbstractC @ line 61
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized callViaAbstractC at depth 5
+[PASS 1][callViaAbstractC]  fwd-mono=0  inline=1  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized callViaAbstractC at depth 5
+[INLINE] Skipped (constructor): Test$C
+[MONO-PT]  callViaAbstractC @ line -1  pts={Test$C@17}  ->  compute
+[MONO-PT]  callViaAbstractC @ line -1  pts={Test$C@17}  ->  shared
+[PASS 2][callViaAbstractC]  fwd-mono=0  inline=0  pt-mono=2
+[INLINE] Skipped (constructor): Test$C
+[INLINE]  compute  ->  callViaAbstractC @ line -1
+[INLINE]  shared  ->  callViaAbstractC @ line -1
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized callViaAbstractC at depth 5
+[PASS 3][callViaAbstractC]  fwd-mono=0  inline=2  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized callViaAbstractC at depth 5
+[INLINE] Skipped (constructor): Test$C
+[PASS 4][callViaAbstractC]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized useA at depth 4
+[PT-INTER] Summarized callViaAbstractD at depth 5
+[INLINE] Skipped (constructor): Test$D
+[INLINE]  useA  ->  callViaAbstractD @ line 66
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized callViaAbstractD at depth 5
+[PASS 1][callViaAbstractD]  fwd-mono=0  inline=1  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized callViaAbstractD at depth 5
+[INLINE] Skipped (constructor): Test$D
+[MONO-PT]  callViaAbstractD @ line -1  pts={Test$D@21}  ->  compute
+[MONO-PT]  callViaAbstractD @ line -1  pts={Test$D@21}  ->  shared
+[PASS 2][callViaAbstractD]  fwd-mono=0  inline=0  pt-mono=2
+[INLINE] Skipped (constructor): Test$D
+[INLINE]  compute  ->  callViaAbstractD @ line -1
+[INLINE]  shared  ->  callViaAbstractD @ line -1
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized callViaAbstractD at depth 5
+[PASS 3][callViaAbstractD]  fwd-mono=0  inline=2  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized callViaAbstractD at depth 5
+[INLINE] Skipped (constructor): Test$D
+[PASS 4][callViaAbstractD]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized chainC at depth 4
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized chainD at depth 4
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized chainE at depth 4
+[PT-INTER] Summarized callViaAbstractC at depth 4
+[PT-INTER] Summarized callViaAbstractD at depth 4
+[PT-INTER] Summarized runOnce at depth 5
+[INLINE]  chainC  ->  runOnce @ line 74
+[INLINE]  chainD  ->  runOnce @ line 75
+[INLINE]  chainE  ->  runOnce @ line 76
+[INLINE]  callViaAbstractC  ->  runOnce @ line 77
+[INLINE]  callViaAbstractD  ->  runOnce @ line 78
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized runOnce at depth 5
+[PASS 1][runOnce]  fwd-mono=0  inline=5  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized runOnce at depth 5
+[INLINE] Skipped (constructor): Test$C
+[INLINE] Skipped (constructor): Test$D
+[INLINE] Skipped (constructor): Test$E
+[INLINE] Skipped (constructor): Test$C
+[INLINE] Skipped (constructor): Test$D
+[PASS 2][runOnce]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized runOnce at depth 4
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized valueOf at depth 4
+[PT-INTER] Summarized main at depth 5
+[INLINE] Skipped (size=90): runOnce
+[INLINE]  valueOf  ->  main @ line 94
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized runOnce at depth 4
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized main at depth 5
+[PASS 1][main]  fwd-mono=0  inline=1  pt-mono=0
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized runOnce at depth 4
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized main at depth 5
+[INLINE] Skipped (size=90): runOnce
+[INLINE] Skipped (constructor): Double
+[PASS 2][main]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 5
+[INLINE] Skipped (constructor): Test$C
+[PASS 1][<init>]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized compute at depth 5
+[PASS 1][compute]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 5
+[INLINE] Skipped (constructor): Object
+[PASS 1][<init>]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized shared at depth 5
+[PASS 1][shared]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 5
+[INLINE] Skipped (constructor): Test$B
+[PASS 1][<init>]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized compute at depth 5
+[PASS 1][compute]  fwd-mono=0  inline=0  pt-mono=0
+
+=== Total monomorphized : 11 ===
+=== Total inlined: 19 ===
+
+[DUMP] Jimple written to ./output/Test11/after
+
+[METRICS AFTER]
+label=AFTER
+methodCount=20
+totalStmts=239
+virtualCallSites=5
+directCallSites=20
+inlineOpportunities=17
+
+Soot finished on Sat Apr 18 23:53:02 IST 2026
+Soot has run for 0 min. 0 sec.
+Soot started on Sat Apr 18 23:53:02 IST 2026
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 5
+[INLINE] Skipped (constructor): Test$B
+[PASS 1][<init>]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized compute at depth 5
+[PASS 1][compute]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized shared at depth 5
+[PASS 1][shared]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 5
+[INLINE] Skipped (constructor): Test$A
+[PASS 1][<init>]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized shared at depth 5
+[PASS 1][shared]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 5
+[INLINE] Skipped (constructor): Object
+[PASS 1][<init>]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized useA at depth 5
+[PASS 1][useA]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized chainC at depth 5
+[MONO-FWD]  chainC @ line 39  ->  shared
+[INLINE] Skipped (constructor): Test$C
+[INLINE]  shared  ->  chainC @ line 39
+[MONO-PT]  chainC @ line 38  pts={Test$C@5}  ->  compute
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized chainC at depth 5
+[PASS 1][chainC]  fwd-mono=1  inline=1  pt-mono=1
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized chainC at depth 5
+[INLINE] Skipped (constructor): Test$C
+[INLINE]  compute  ->  chainC @ line 38
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized chainC at depth 5
+[PASS 2][chainC]  fwd-mono=0  inline=1  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized chainC at depth 5
+[INLINE] Skipped (constructor): Test$C
+[PASS 3][chainC]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized chainD at depth 5
+[MONO-FWD]  chainD @ line 45  ->  compute
+[MONO-FWD]  chainD @ line 46  ->  shared
+[INLINE] Skipped (constructor): Test$D
+[INLINE]  compute  ->  chainD @ line 45
+[INLINE]  shared  ->  chainD @ line 46
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized chainD at depth 5
+[PASS 1][chainD]  fwd-mono=2  inline=2  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized chainD at depth 5
+[INLINE] Skipped (constructor): Test$D
+[PASS 2][chainD]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized chainE at depth 5
+[MONO-FWD]  chainE @ line 52  ->  compute
+[MONO-FWD]  chainE @ line 52  ->  shared
+[MONO-FWD]  chainE @ line 52  ->  compute
+[INLINE] Skipped (constructor): Test$E
+[INLINE]  compute  ->  chainE @ line 52
+[INLINE]  shared  ->  chainE @ line 52
+[INLINE]  compute  ->  chainE @ line 52
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized chainE at depth 5
+[PASS 1][chainE]  fwd-mono=3  inline=3  pt-mono=0
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized chainE at depth 5
+[INLINE] Skipped (constructor): Test$E
+[PASS 2][chainE]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized useA at depth 4
+[PT-INTER] Summarized callViaAbstractC at depth 5
+[INLINE] Skipped (constructor): Test$C
+[INLINE]  useA  ->  callViaAbstractC @ line 61
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized callViaAbstractC at depth 5
+[PASS 1][callViaAbstractC]  fwd-mono=0  inline=1  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized callViaAbstractC at depth 5
+[INLINE] Skipped (constructor): Test$C
+[MONO-PT]  callViaAbstractC @ line -1  pts={Test$C@17}  ->  compute
+[MONO-PT]  callViaAbstractC @ line -1  pts={Test$C@17}  ->  shared
+[PASS 2][callViaAbstractC]  fwd-mono=0  inline=0  pt-mono=2
+[INLINE] Skipped (constructor): Test$C
+[INLINE]  compute  ->  callViaAbstractC @ line -1
+[INLINE]  shared  ->  callViaAbstractC @ line -1
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized callViaAbstractC at depth 5
+[PASS 3][callViaAbstractC]  fwd-mono=0  inline=2  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized callViaAbstractC at depth 5
+[INLINE] Skipped (constructor): Test$C
+[PASS 4][callViaAbstractC]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized useA at depth 4
+[PT-INTER] Summarized callViaAbstractD at depth 5
+[INLINE] Skipped (constructor): Test$D
+[INLINE]  useA  ->  callViaAbstractD @ line 66
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized callViaAbstractD at depth 5
+[PASS 1][callViaAbstractD]  fwd-mono=0  inline=1  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized compute at depth 4
+[PT-INTER] Summarized shared at depth 4
+[PT-INTER] Summarized callViaAbstractD at depth 5
+[INLINE] Skipped (constructor): Test$D
+[MONO-PT]  callViaAbstractD @ line -1  pts={Test$D@21}  ->  compute
+[MONO-PT]  callViaAbstractD @ line -1  pts={Test$D@21}  ->  shared
+[PASS 2][callViaAbstractD]  fwd-mono=0  inline=0  pt-mono=2
+[INLINE] Skipped (constructor): Test$D
+[INLINE]  compute  ->  callViaAbstractD @ line -1
+[INLINE]  shared  ->  callViaAbstractD @ line -1
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized callViaAbstractD at depth 5
+[PASS 3][callViaAbstractD]  fwd-mono=0  inline=2  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized callViaAbstractD at depth 5
+[INLINE] Skipped (constructor): Test$D
+[PASS 4][callViaAbstractD]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized chainC at depth 4
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized chainD at depth 4
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized chainE at depth 4
+[PT-INTER] Summarized callViaAbstractC at depth 4
+[PT-INTER] Summarized callViaAbstractD at depth 4
+[PT-INTER] Summarized runOnce at depth 5
+[INLINE]  chainC  ->  runOnce @ line 74
+[INLINE]  chainD  ->  runOnce @ line 75
+[INLINE]  chainE  ->  runOnce @ line 76
+[INLINE]  callViaAbstractC  ->  runOnce @ line 77
+[INLINE]  callViaAbstractD  ->  runOnce @ line 78
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized runOnce at depth 5
+[PASS 1][runOnce]  fwd-mono=0  inline=5  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized runOnce at depth 5
+[INLINE] Skipped (constructor): Test$C
+[INLINE] Skipped (constructor): Test$D
+[INLINE] Skipped (constructor): Test$E
+[INLINE] Skipped (constructor): Test$C
+[INLINE] Skipped (constructor): Test$D
+[PASS 2][runOnce]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized runOnce at depth 4
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized valueOf at depth 4
+[PT-INTER] Summarized main at depth 5
+[INLINE] Skipped (size=90): runOnce
+[INLINE]  valueOf  ->  main @ line 94
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized runOnce at depth 4
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized main at depth 5
+[PASS 1][main]  fwd-mono=0  inline=1  pt-mono=0
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Depth limit reached at: <init>
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized runOnce at depth 4
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized main at depth 5
+[INLINE] Skipped (size=90): runOnce
+[INLINE] Skipped (constructor): Double
+[PASS 2][main]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 1
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 5
+[INLINE] Skipped (constructor): Test$C
+[PASS 1][<init>]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized compute at depth 5
+[PASS 1][compute]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 5
+[INLINE] Skipped (constructor): Object
+[PASS 1][<init>]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized shared at depth 5
+[PASS 1][shared]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized <init> at depth 2
+[PT-INTER] Summarized <init> at depth 3
+[PT-INTER] Summarized <init> at depth 4
+[PT-INTER] Summarized <init> at depth 5
+[INLINE] Skipped (constructor): Test$B
+[PASS 1][<init>]  fwd-mono=0  inline=0  pt-mono=0
+[PT-INTER] Summarized compute at depth 5
+[PASS 1][compute]  fwd-mono=0  inline=0  pt-mono=0
+
+=== Total monomorphized : 11 ===
+=== Total inlined: 19 ===
+
+Soot finished on Sat Apr 18 23:53:02 IST 2026
+Soot has run for 0 min. 0 sec.
+Soot started on Sat Apr 18 23:53:02 IST 2026
+Soot finished on Sat Apr 18 23:53:03 IST 2026
+Soot has run for 0 min. 0 sec.
+
+╔══════════════════════════════════════════════════════════╗
+║           TRANSFORMATION IMPROVEMENT SUMMARY             ║
+╠══════════════════╦═════════╦═════════╦══════════════════╣
+║ Metric           ║  BEFORE ║   AFTER ║           Change ║
+╠══════════════════╬═════════╬═════════╬══════════════════╣
+║ methodCount      ║      20 ║      20 ║      +0    +0.0% ║
+║ totalStmts       ║     121 ║     239 ║    +118   +97.5% ║
+║ virtualCallSites ║      12 ║       5 ║      -7   -58.3% ║
+║ directCallSites  ║      22 ║      20 ║      -2    -9.1% ║
+║ inlineOpportunities ║      20 ║      17 ║      -3   -15.0% ║
+╚══════════════════╩═════════╩═════════╩══════════════════╝
+
+FINAL RESULTS:
+- 7 virtual call(s) monomorphized (virtual dispatch eliminated)
+- 2 direct call(s) inlined (call frame eliminated)
+- Jimple diffs: compare before/ and after/ directories
+
+╔══════════════════════════════════════════════════════════╗
+║               WALL-CLOCK TIMING (-Xint)                  ║
+╠══════════════════════════════════════════════════════════╣
+║  Testcase : Test11                                       ║
+║  Runs     : 5                                            ║
+╠════════════╦══════════════════════╦═════════════════════╣
+║ Run        ║ Original (ms)        ║ Transformed (ms)    ║
+╠════════════╬══════════════════════╬═════════════════════╣
+║ Run 1      ║          25441.992 ║         13715.728 ║
+║ Run 2      ║          25446.615 ║         13698.590 ║
+║ Run 3      ║          25073.345 ║         13893.717 ║

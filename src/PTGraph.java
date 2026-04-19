@@ -31,9 +31,7 @@ class PTGraph {
     }
 
     void addHeapPtr(Integer id, SootField sfld, int pt2Id) {
-        heap.computeIfAbsent(id, k -> new HashMap<>())
-            .computeIfAbsent(sfld, k -> new HashSet<>())
-            .add(pt2Id);
+        heap.computeIfAbsent(id, k -> new HashMap<>()).computeIfAbsent(sfld, k -> new HashSet<>()).add(pt2Id);
     }
 
     void copy (PTGraph Other) {
@@ -46,9 +44,7 @@ class PTGraph {
         for (Map.Entry<Integer, Map<SootField, Set<Integer>>> h : Other.heap.entrySet()) {
             int inner_k = h.getKey();
             for (Map.Entry<SootField, Set<Integer>> e : h.getValue().entrySet()) {
-                heap.computeIfAbsent(inner_k, k -> new HashMap<>())
-                        .computeIfAbsent(e.getKey(), k -> new HashSet<>())
-                        .addAll(e.getValue());
+                heap.computeIfAbsent(inner_k, k -> new HashMap<>()).computeIfAbsent(e.getKey(), k -> new HashSet<>()).addAll(e.getValue());
             }
         }
     }
@@ -70,24 +66,24 @@ class PTGraph {
             if (Other.stack.containsKey(l)) {
                 onlyInOther.remove(l);
                 Set<Integer> otherSet = Other.stack.get(l);
-                if (otherSet != null && s.getValue() != null)
+                if (otherSet != null && s.getValue() != null) {
                     s.getValue().addAll(otherSet);
+                }
             }
         }
 
         for (Local l : onlyInOther) {
             Set<Integer> otherSet = Other.stack.get(l);
-            if (otherSet != null)
+            if (otherSet != null) {
                 stack.computeIfAbsent(l, k -> new HashSet<>()).addAll(otherSet);
+            }
         }
 
         for (Map.Entry<Integer, Map<SootField, Set<Integer>>> h : Other.heap.entrySet()) {
             if (h.getValue() == null) continue;
             for (Map.Entry<SootField, Set<Integer>> e : h.getValue().entrySet()) {
                 if (e.getValue() == null) continue;
-                heap.computeIfAbsent(h.getKey(), k -> new HashMap<>())
-                    .computeIfAbsent(e.getKey(), k -> new HashSet<>())
-                    .addAll(e.getValue());
+                heap.computeIfAbsent(h.getKey(), k -> new HashMap<>()).computeIfAbsent(e.getKey(), k -> new HashSet<>()).addAll(e.getValue());
             }
         }
     }

@@ -2,11 +2,11 @@
 
 # Exit on error
 set -e
-rm Testcases/*/*.class
+# rm Testcases/*/*.class
 rm *.class
 make ansC
 
-for i in {1..8}; do
+for i in {12..12}; do
     echo "Running for Test$i"
 
     # Replace Test0 with Test$i in Makefile
